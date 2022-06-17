@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>로또추첨기</title>
+	<style>
+		* {
+			font-family: pretendard;
+		}
+
+		body {
+			background-color: #e4e4e4;
+			padding: 100px;
+		}
+
+		.wrap {
+			width: 500px;
+			height: 500px;
+			background-color: #fff;
+			box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.2);
+			border-radius: 10px;
+			margin: auto auto;
+			padding: 20px;
+			box-sizing: border-box;
+			text-align: center;
+		}
+
+		h1 {
+			font-size: 20px;
+			font-weight: 500;
+		}
+
+		.btn {
+			padding: 10px 20px;
+			border: none;
+			border-radius: 4px;
+			background-color: #7d46ac;
+			cursor: pointer;
+			font-size: 16px;
+			color: #fff;
+		}
+
+		h4 {
+			font-weight: 400;
+		}
+
+		.number {
+			width: 250px;
+			height: 50px;
+			margin: 0 auto;
+			border-radius: 4px;
+			/* background-color: antiquewhite; */
+			font-size: 18px;
+			line-height: 50px;
+		}
+		.canvas{
+			margin-top: 10px;
+		}
+	</style>
+</head>
+
+<body>
+	<div class="wrap">
+		<h1>인생은 한방이란 말이야</h1>
+		<button class="btn">🤟 번호추첨하기</button>
+		<h4>제번호는요</h4>
+		<div class="number"></div>
+		<canvas class="canvas"></canvas>
+		<h4>일등되면 한턱쏘새요ㅎ</h4>
+	</div>
+	<script>
+
+
+		const btn = document.querySelector('.btn');
+		const output = document.querySelector('.number');
+		let canvas = document.querySelector('.canvas');
+		let ctx = canvas.getContext('2d');
+		ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+		btn.addEventListener('click', function(){
+			let lotto = new Array(45);
+		console.log(lotto)
+
+		for (i = 0; i < 45; i++) {
+			lotto[i] = i + 1;
+		}
+					let rNum;
+					myNum = new Array(6);
+					for (i = 0; i < 6; i++) {
+						rNum = parseInt(Math.random() * lotto.length);
+						myNum[i] = lotto[rNum];
+						lotto.splice(rNum, 1);
+					}
+
+					myNum.sort(function (a, b) {
+						return a - b;
+					});
+					output.innerHTML=myNum;
+					ctx.font = '22px pretendard';
+					ctx.textAlign = "center";
+					for (i = 0; i < 6; i++) {
+						switch (Math.ceil(myNum[i] / 10)) {
+							case 1:
+								ctx.beginPath();
+								ctx.arc(i * 60 + 30, 25, 20, 0, 2 * Math.PI, false);
+								ctx.fillStyle = "rgb(250,196,0)";
+								ctx.fill();
+								ctx.closePath();
+								break;
+							case 2:
+								ctx.beginPath();
+								ctx.arc(i * 60 + 30, 25, 20, 0, 2 * Math.PI, false);
+								ctx.fillStyle = "rgb(104,200,242)";
+								ctx.fill();
+								ctx.closePath();
+								break;
+							case 3:
+								ctx.beginPath();
+								ctx.arc(i * 60 + 30, 25, 20, 0, 2 * Math.PI, false);
+								ctx.fillStyle = "rgb(254,114,114)";
+								ctx.fill();
+								ctx.closePath();
+								break;
+							case 4:
+								ctx.beginPath();
+								ctx.arc(i * 60 + 30, 25, 20, 0, 2 * Math.PI, false);
+								ctx.fillStyle = "rgb(170,170,170)";
+								ctx.fill();
+								ctx.closePath();
+								break;
+							case 5:
+								ctx.beginPath();
+								ctx.arc(i * 60 + 30, 25, 20, 0, 2 * Math.PI, false);
+								ctx.fillStyle = "rgb(176,216,65)";
+								ctx.fill();
+								ctx.closePath();
+								break;
+						}
+						ctx.fillStyle = "white";
+						ctx.fillText(myNum[i], i * 60 + 30, 32);
+
+					}
+				});
+
+	</script>
+</body>
+
+</html>
+
+</html>
